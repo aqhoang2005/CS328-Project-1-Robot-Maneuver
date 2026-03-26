@@ -90,8 +90,8 @@ void Left(int speed)
 
 void Right(int speed)
 {
-  analogWrite(MotorPWM_L, speed);
-  analogWrite(MotorPWM_R, speed - 20);
+  analogWrite(MotorPWM_L, speed - 20);
+  analogWrite(MotorPWM_R, speed);
   
   // Left motor forward
   digitalWrite(INA1A, HIGH);
@@ -157,10 +157,10 @@ void loop() {
       //for(;;){}//Stop operations
     }
     else if (cmd == 'L') {
-      Left(200);
+      Left(100);
     }
     else if (cmd == 'R') {
-      Right(200);
+      Right(100);
     }
     else if (cmd == 'E'){
       for(int i = 0; i < 260; i += 5){
