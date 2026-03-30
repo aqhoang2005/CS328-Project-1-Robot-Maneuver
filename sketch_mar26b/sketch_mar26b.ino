@@ -165,19 +165,19 @@ void loop() {
       int speed = 200;
 
       Forward(speed);
-      delay(800);
+      delay(600);// was 800 then moved start point
       StopMotors();
       
       delay(100);
 
       Right(speed);
-      delay(200);// delay was 180
+      delay(160);// delay was 160 super charged, delay was 180 when charged, 200 when dead ish
       StopMotors();
 
       delay(100);//new 0
 
       Forward(speed);
-      delay(400);//new 1
+      delay(600);// 400 dead, 600 alive
       StopMotors();
 
       delay(100);//new 2 and below
@@ -189,7 +189,7 @@ void loop() {
       delay(100);//new 3
 
       Forward(speed);
-      delay(300);
+      delay(400);//300 dead, 400 alive
       StopMotors();
 
       delay(100);//new 4 and below
