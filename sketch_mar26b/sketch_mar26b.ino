@@ -154,7 +154,6 @@ void loop() {
     }
     else if (cmd == 'S') {
       StopMotors();
-      //for(;;){}//Stop operations
     }
     else if (cmd == 'L') {
       Left(100);
@@ -162,51 +161,47 @@ void loop() {
     else if (cmd == 'R') {
       Right(100);
     }
-    else if (cmd == 'E'){
-      for(int i = 0; i < 260; i += 5){
-        pwm = i;
-        Forward(i);
-        //delay(100);
+    else if (cmd == 'Q'){
+      int speed = 200;
+      //RIGHT
+      analogWrite(MotorPWM_L, speed - 20);
+      analogWrite(MotorPWM_R, speed);
+      
+      // Left motor forward
+      digitalWrite(INA1A, HIGH);
+      digitalWrite(INA2A, LOW);
 
-        noInterrupts();
-        long leftCount = count_left;
-        long rightCount = count_right;
-        count_left = 0;
-        count_right = 0;
-        interrupts();
+      // Right motor backward
+      digitalWrite(INA1B, LOW);
+      digitalWrite(INA2B, HIGH);
 
-        delay(100);
+      //DELAY
+      delay(50);
 
-        float rpmLeft = leftCount * rotation;
-        float rpmRight = rightCount * rotation;
+      //STOP
+      analogWrite(MotorPWM_L, 0);
+      analogWrite(MotorPWM_R, 0);
 
-        Serial.print("PWM: ");
-        Serial.print(pwm);
-        Serial.print("   Left RPM: ");
-        Serial.print(rpmLeft);
-        Serial.print("   Right RPM: ");
-        Serial.println(rpmRight);
-      }
+      digitalWrite(INA1A, LOW);
+      digitalWrite(INA2A, LOW);
+      digitalWrite(INA1B, LOW);
+      digitalWrite(INA2B, LOW);
+
+      //DELAY
+      delay(50);
+
+      //LEFT
+      analogWrite(MotorPWM_L, speed);
+      analogWrite(MotorPWM_R, speed - 20);
+      
+      // Left motor backward
+      digitalWrite(INA1A, LOW);
+      digitalWrite(INA2A, HIGH);
+
+      // Right motor forward
+      digitalWrite(INA1B, HIGH);
+      digitalWrite(INA2B, LOW);
+
     }
   }
 }
-//     if (Serial2.available()){ //send to car
-//       char receivedChar = Serial2.read(); // Read the incoming byte
-//       Serial.print("Received on Serial2: ");
-//       Serial.println(receivedChar); // Print it to the Serial Monitor
-//       if(receivedChar == 'F'){
-        
-//       }
-//       else if(receivedChar == 'B'){
-        
-//       }
-//     }
-//     if (Serial2.available()) {
-//       char sentChar = Serial2.read(); // Read the incoming byte
-//       Serial.print("Sending to Serial2: ");
-//       Serial.println(sentChar);
-//       Serial2.write(sentChar); // Send it out through Serial1
-//     }
-//  }
-
-
