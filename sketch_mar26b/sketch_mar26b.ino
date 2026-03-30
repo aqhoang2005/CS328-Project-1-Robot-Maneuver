@@ -161,47 +161,42 @@ void loop() {
     else if (cmd == 'R') {
       Right(100);
     }
-    else if (cmd == 'Q'){
+    else if (cmd == 'Q'){ //these were all calibrated using a dead ish battery
       int speed = 200;
-      //RIGHT
-      analogWrite(MotorPWM_L, speed - 20);
-      analogWrite(MotorPWM_R, speed);
+
+      Forward(speed);
+      delay(800);
+      StopMotors();
       
-      // Left motor forward
-      digitalWrite(INA1A, HIGH);
-      digitalWrite(INA2A, LOW);
+      delay(100);
 
-      // Right motor backward
-      digitalWrite(INA1B, LOW);
-      digitalWrite(INA2B, HIGH);
+      Right(speed);
+      delay(200);// delay was 180
+      StopMotors();
 
-      //DELAY
-      delay(50);
+      delay(100);//new 0
 
-      //STOP
-      analogWrite(MotorPWM_L, 0);
-      analogWrite(MotorPWM_R, 0);
+      Forward(speed);
+      delay(400);//new 1
+      StopMotors();
 
-      digitalWrite(INA1A, LOW);
-      digitalWrite(INA2A, LOW);
-      digitalWrite(INA1B, LOW);
-      digitalWrite(INA2B, LOW);
+      delay(100);//new 2 and below
 
-      //DELAY
-      delay(50);
+      Right(speed);
+      delay(200);
+      StopMotors();
 
-      //LEFT
-      analogWrite(MotorPWM_L, speed);
-      analogWrite(MotorPWM_R, speed - 20);
-      
-      // Left motor backward
-      digitalWrite(INA1A, LOW);
-      digitalWrite(INA2A, HIGH);
+      delay(100);//new 3
 
-      // Right motor forward
-      digitalWrite(INA1B, HIGH);
-      digitalWrite(INA2B, LOW);
+      Forward(speed);
+      delay(300);
+      StopMotors();
 
+      delay(100);//new 4 and below
+
+      Right(speed);
+      delay(200);
+      StopMotors();
     }
   }
 }
