@@ -165,38 +165,73 @@ void loop() {
       int speed = 200;
 
       Forward(speed);
-      delay(600);// was 800 then moved start point
+      delay(500);//
       StopMotors();
       
       delay(100);
 
       Right(speed);
+      digitalWrite(RIGHTREAR, HIGH);
+      digitalWrite(RIGHTFRONT, HIGH);
       delay(160);// delay was 160 super charged, delay was 180 when charged, 200 when dead ish
+      digitalWrite(RIGHTREAR, LOW);
+      digitalWrite(RIGHTFRONT, LOW);
       StopMotors();
+      digitalWrite(LEFTREAR, HIGH);
+      digitalWrite(RIGHTREAR, HIGH);
 
       delay(100);//new 0
+      digitalWrite(LEFTREAR, LOW);
+      digitalWrite(RIGHTREAR, LOW);
 
       Forward(speed);
-      delay(600);// 400 dead, 600 alive
+      delay(500);// 400 dead, 600 alive
       StopMotors();
 
       delay(100);//new 2 and below
 
       Right(speed);
-      delay(200);
+      digitalWrite(RIGHTREAR, HIGH);
+      digitalWrite(RIGHTFRONT, HIGH);
+      delay(240);//was 240
       StopMotors();
 
       delay(100);//new 3
 
       Forward(speed);
-      delay(400);//300 dead, 400 alive
+      delay(600);//300 dead, 400 alive was 500
       StopMotors();
+      digitalWrite(RIGHTREAR, LOW);
+      digitalWrite(RIGHTFRONT, LOW);
+      StopMotors();
+      digitalWrite(LEFTREAR, HIGH);
+      digitalWrite(RIGHTREAR, HIGH);
 
       delay(100);//new 4 and below
 
       Right(speed);
-      delay(200);
+      digitalWrite(RIGHTFRONT, HIGH);
+      digitalWrite(RIGHTREAR, HIGH);
+      delay(180);
       StopMotors();
+      digitalWrite(RIGHTREAR, LOW);
+      digitalWrite(RIGHTFRONT, LOW);
+      StopMotors();
+      digitalWrite(LEFTREAR, HIGH);
+      digitalWrite(RIGHTREAR, HIGH);
+
+      delay(100);
+
+      Forward(speed);
+      delay(500);
+      StopMotors();
+      digitalWrite(RIGHTREAR, LOW);
+      digitalWrite(RIGHTFRONT, LOW);
+      StopMotors();
+      digitalWrite(LEFTREAR, HIGH);
+      digitalWrite(RIGHTREAR, HIGH);
+
+      delay(100);
     }
   }
 }
