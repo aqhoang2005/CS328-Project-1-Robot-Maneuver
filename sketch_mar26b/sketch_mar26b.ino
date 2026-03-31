@@ -12,6 +12,12 @@
 #define INA1B 30
 #define INA2B 36
 
+//Lights
+#define LEFTREAR 31
+#define LEFTFRONT 49
+#define RIGHTREAR 37
+#define RIGHTFRONT 43
+
 // Encoder pins
 #define ENCODER_LEFT  2
 #define ENCODER_RIGHT 3
@@ -162,7 +168,7 @@ void loop() {
       Right(100);
     }
     else if (cmd == 'Q'){ //these were all calibrated using a dead ish battery
-      int speed = 200;
+      int speed = 195;
 
       Forward(speed);
       delay(500);//
@@ -170,10 +176,11 @@ void loop() {
       
       delay(100);
 
-      Right(speed);
+      //FIRST CORNER
+      Right(speed); 
       digitalWrite(RIGHTREAR, HIGH);
       digitalWrite(RIGHTFRONT, HIGH);
-      delay(160);// delay was 160 super charged, delay was 180 when charged, 200 when dead ish
+      delay(185);// delay was 160 super charged, delay was 180 when charged, 200 when dead ish
       digitalWrite(RIGHTREAR, LOW);
       digitalWrite(RIGHTFRONT, LOW);
       StopMotors();
@@ -190,16 +197,17 @@ void loop() {
 
       delay(100);//new 2 and below
 
+      //SECOND CORNER
       Right(speed);
       digitalWrite(RIGHTREAR, HIGH);
       digitalWrite(RIGHTFRONT, HIGH);
-      delay(240);//was 240
+      delay(160);//was 240
       StopMotors();
 
       delay(100);//new 3
 
       Forward(speed);
-      delay(600);//300 dead, 400 alive was 500
+      delay(450);//300 dead, 400 alive was 500
       StopMotors();
       digitalWrite(RIGHTREAR, LOW);
       digitalWrite(RIGHTFRONT, LOW);
@@ -212,8 +220,8 @@ void loop() {
       Right(speed);
       digitalWrite(RIGHTFRONT, HIGH);
       digitalWrite(RIGHTREAR, HIGH);
-      delay(180);
-      StopMotors();
+      delay(300);
+
       digitalWrite(RIGHTREAR, LOW);
       digitalWrite(RIGHTFRONT, LOW);
       StopMotors();
@@ -223,7 +231,7 @@ void loop() {
       delay(100);
 
       Forward(speed);
-      delay(500);
+      delay(450);
       StopMotors();
       digitalWrite(RIGHTREAR, LOW);
       digitalWrite(RIGHTFRONT, LOW);
