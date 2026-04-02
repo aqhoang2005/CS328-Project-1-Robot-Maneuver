@@ -52,6 +52,21 @@ void ISRMotorRight() {
 }
 
 // ============================
+// Light controls
+// ============================
+void LightsOff(){
+  
+}
+
+void RightLights(){
+
+}
+
+void LeftLights(){
+
+}
+
+// ============================
 // Motor control
 // ============================
 void Forward(int speed) {
@@ -162,6 +177,12 @@ void setup() {
   // Encoder pins
   pinMode(ENCODER_LEFT, INPUT_PULLUP);
   pinMode(ENCODER_RIGHT, INPUT_PULLUP);
+
+  // Lights
+  pinMode(LEFTREAR, OUTPUT);
+  pinMode(LEFTFRONT, OUTPUT);
+  pinMode(RIGHTREAR, OUTPUT);
+  pinMode(RIGHTFRONT, OUTPUT);
 
   attachInterrupt(digitalPinToInterrupt(ENCODER_LEFT), ISRMotorLeft, FALLING);
   attachInterrupt(digitalPinToInterrupt(ENCODER_RIGHT), ISRMotorRight, FALLING);
