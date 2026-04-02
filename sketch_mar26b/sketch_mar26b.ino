@@ -5,10 +5,6 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
-<<<<<<< Updated upstream
-}
-=======
     if (cmd == 'F') {
       Forward(128);
     }
@@ -131,5 +127,3 @@ void loop() {
       // delay(100);
     }
   }
-}
->>>>>>> Stashed changes
