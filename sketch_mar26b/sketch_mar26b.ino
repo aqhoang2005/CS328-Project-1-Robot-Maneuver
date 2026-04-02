@@ -44,6 +44,37 @@ void ISRMotorLeft() {
 void ISRMotorRight() {
   count_right++;
 }
+// ============================
+// Light control
+// ============================
+void OFFLights(){
+  digitalWrite(LEFTREAR, LOW);
+  digitalWrite(RIGHTREAR, LOW);
+  digitalWrite(LEFTFRONT, LOW);
+  digitalWrite(RIGHTFRONT, LOW);  
+}
+
+void ONLights(){
+  digitalWrite(LEFTREAR, HIGH);
+  digitalWrite(RIGHTREAR, HIGH);
+  digitalWrite(LEFTFRONT, HIGH);
+  digitalWrite(RIGHTFRONT, HIGH);
+}
+
+void BREAKLights(){
+  digitalWrite(LEFTREAR, HIGH);
+  digitalWrite(RIGHTREAR, HIGH);
+}
+
+void RIGHTLights(){
+  digitalWrite(RIGHTREAR, HIGH);
+  digitalWrite(RIGHTFRONT, HIGH);
+}
+
+void LEFTLights(){
+  digitalWrite(LEFTREAR, HIGH);
+  digitalWrite(LEFTFRONT, HIGH);
+}
 
 // ============================
 // Motor control
@@ -76,6 +107,8 @@ void Backward(int speed) {
 
 void Left(int speed) 
 {
+  OFFLights();
+  LEFTLights();
   analogWrite(MotorPWM_L, speed);
   analogWrite(MotorPWM_R, speed - 20);
   
@@ -90,6 +123,8 @@ void Left(int speed)
 
 void Right(int speed)
 {
+  OFFLights();
+  RightLights();
   analogWrite(MotorPWM_L, speed - 20);
   analogWrite(MotorPWM_R, speed);
   
@@ -103,6 +138,8 @@ void Right(int speed)
 }
 
 void StopMotors() {
+  OFFLights();
+  BREAKLights();
   analogWrite(MotorPWM_L, 0);
   analogWrite(MotorPWM_R, 0);
 
@@ -114,6 +151,7 @@ void StopMotors() {
 
 void Halt(int startSpeed)
 {
+  BREAKLights();
   for (int s = startSpeed; s > 0; s -= 20) {
     Forward(s);
     delay(20);
@@ -156,6 +194,12 @@ void setup() {
   // Encoder pins
   pinMode(ENCODER_LEFT, INPUT_PULLUP);
   pinMode(ENCODER_RIGHT, INPUT_PULLUP);
+
+  // Light Control
+  pinMode(LEFTFRONT, OUTPUT);
+  pinMode(RIGHTFRONT, OUTPUT);
+  pinMode(LEFTREAR, OUTPUT);
+  pinMode(RIGHTREAR, OUTPUT);
 
   attachInterrupt(digitalPinToInterrupt(ENCODER_LEFT), ISRMotorLeft, FALLING);
   attachInterrupt(digitalPinToInterrupt(ENCODER_RIGHT), ISRMotorRight, FALLING);
@@ -223,77 +267,6 @@ void loop() {
       // delay(340);
 
       // Halt(speed);
-
-      /*Old Code in case*/
-
-      // Forward(speed);
-      // delay(500);//
-      // StopMotors();
-      
-      // delay(100);
-
-      // Right(speed);
-      // digitalWrite(RIGHTREAR, HIGH);
-      // digitalWrite(RIGHTFRONT, HIGH);
-      // delay(160);// delay was 160 super charged, delay was 180 when charged, 200 when dead ish
-      // digitalWrite(RIGHTREAR, LOW);
-      // digitalWrite(RIGHTFRONT, LOW);
-      // StopMotors();
-      // digitalWrite(LEFTREAR, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-
-      // delay(100);//new 0
-      // digitalWrite(LEFTREAR, LOW);
-      // digitalWrite(RIGHTREAR, LOW);
-
-      // Forward(speed);
-      // delay(500);// 400 dead, 600 alive
-      // StopMotors();
-
-      // delay(100);//new 2 and below
-
-      // Right(speed);
-      // digitalWrite(RIGHTREAR, HIGH);
-      // digitalWrite(RIGHTFRONT, HIGH);
-      // delay(240);//was 240
-      // StopMotors();
-
-      // delay(100);//new 3
-
-      // Forward(speed);
-      // delay(600);//300 dead, 400 alive was 500
-      // StopMotors();
-      // digitalWrite(RIGHTREAR, LOW);
-      // digitalWrite(RIGHTFRONT, LOW);
-      // StopMotors();
-      // digitalWrite(LEFTREAR, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-
-      // delay(100);//new 4 and below
-
-      // Right(speed);
-      // digitalWrite(RIGHTFRONT, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-      // delay(180);
-      // StopMotors();
-      // digitalWrite(RIGHTREAR, LOW);
-      // digitalWrite(RIGHTFRONT, LOW);
-      // StopMotors();
-      // digitalWrite(LEFTREAR, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-
-      // delay(100);
-
-      // Forward(speed);
-      // delay(500);
-      // StopMotors();
-      // digitalWrite(RIGHTREAR, LOW);
-      // digitalWrite(RIGHTFRONT, LOW);
-      // StopMotors();
-      // digitalWrite(LEFTREAR, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-
-      // delay(100);
     }
   }
 }
