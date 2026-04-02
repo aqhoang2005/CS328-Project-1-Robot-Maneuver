@@ -192,30 +192,30 @@ void loop() {
     else if (cmd == 'Q'){ //these were all calibrated using a dead ish battery
       int speed = 200;
       Forward(speed);
-      delay(330);
+      delay(360);
       
       Halt(speed);
       delay(500);
-      Turn(speed, 100);
-      delay(100);
+      Turn(speed, 80);
+      delay(105);
       Accelerate(speed);
       delay(320);
 
       Halt(speed);
       delay(500);
-      Turn(speed, 80);
+      Turn(speed, 95);
+      delay(110);
+      Accelerate(speed);      
+      delay(330);
+
+      Halt(speed);
+      delay(500);
+      Turn(speed, 100);
       delay(100);
-      // Accelerate(speed);      
-      // delay(330);
+      Accelerate(speed);      
+      delay(320);
 
-      // Halt(speed);
-      // delay(500);
-      // Turn(speed, 100);
-      // delay(100);
-      // Accelerate(speed);      
-      // delay(320);
-
-      // Halt(speed);
+      Halt(speed);
       // delay(500);
       // Turn(speed, 100);
       // delay(100);
