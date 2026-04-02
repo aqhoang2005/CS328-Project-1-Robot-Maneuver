@@ -1,5 +1,30 @@
 //From LAB 5 PWM Motor.c.txt
 // Pins for all inputs, keep in mind the PWM defines must be on PWM pins
+
+#include "Adafruit_SSD1306.h"
+#include "Adafruit_GFX.h"
+
+#include <SoftwareSerial.h>
+
+#define OLED_RESET -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+#define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+
+#define LOGO_WIDTH 8 // OLED display width, in pixels
+#define LOGO_HEIGHT 8 // OLED display height, in pixels
+
+//Color definitions
+#define BLACK 0x000000
+#define BLUE 0x0000FF
+#define RED 0xFF0000
+#define GREEN 0x00FF00
+#define CYAN 0x00FFFF
+#define MAGENTA 0xFF00FF
+#define YELLOW 0xFFFF00
+#define WHITE 0xFFFFF
+
 #define MotorPWM_A 4 //left motor
 #define MotorPWM_B 5 //right motor
 #define BLUETOOTH_BAUD_RATE 38400
@@ -15,6 +40,8 @@
 // Encoder pins
 #define ENCODER_LEFT  2
 #define ENCODER_RIGHT 3
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET); //init display
 
 // ============================
 // Encoder counters
@@ -191,6 +218,11 @@ void setup() {
   pinMode(INA1B, OUTPUT);
   pinMode(INA2B, OUTPUT);
 
+  //SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
+  if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+    for (;;); //Don't proceed, loop forever
+  }
+
   // Encoder pins
   pinMode(ENCODER_LEFT, INPUT_PULLUP);
   pinMode(ENCODER_RIGHT, INPUT_PULLUP);
@@ -207,8 +239,8 @@ void setup() {
   StopMotors();
   delay(1000);
 
-  Serial.println("PWM,RPM_Left,RPM_Right");
-  Serial2.println("PWM,RPM_Left,RPM_Right");
+  display.clearDisplay();
+  display.display();
 }
 
 // ============================
