@@ -196,86 +196,13 @@ void loop() {
       Right(100);
     }
     else if (cmd == 'Q'){ //these were all calibrated using a dead ish battery
-<<<<<<< HEAD
-      int speed = 195;
-
-=======
       int speed = 200;
->>>>>>> main
       Forward(speed);
       delay(330);
-      
-<<<<<<< HEAD
-      delay(100);
 
-      //FIRST CORNER
-      Right(speed); 
-      digitalWrite(RIGHTREAR, HIGH);
-      digitalWrite(RIGHTFRONT, HIGH);
-      delay(185);// delay was 160 super charged, delay was 180 when charged, 200 when dead ish
-      digitalWrite(RIGHTREAR, LOW);
-      digitalWrite(RIGHTFRONT, LOW);
-      StopMotors();
-      digitalWrite(LEFTREAR, HIGH);
-      digitalWrite(RIGHTREAR, HIGH);
-
-      delay(100);//new 0
-      digitalWrite(LEFTREAR, LOW);
-      digitalWrite(RIGHTREAR, LOW);
-
-      Forward(speed);
-      delay(500);// 400 dead, 600 alive
-      StopMotors();
-
-      delay(100);//new 2 and below
-
-      //SECOND CORNER
-      Right(speed);
-      digitalWrite(RIGHTREAR, HIGH);
-      digitalWrite(RIGHTFRONT, HIGH);
-      delay(160);//was 240
-      StopMotors();
-
-      delay(100);//new 3
-
-      Forward(speed);
-      delay(450);//300 dead, 400 alive was 500
-      StopMotors();
-      digitalWrite(RIGHTREAR, LOW);
-      digitalWrite(RIGHTFRONT, LOW);
-      StopMotors();
-      digitalWrite(LEFTREAR, HIGH);
-      digitalWrite(RIGHTREAR, HIGH);
-
-      delay(100);//new 4 and below
-
-      Right(speed);
-      digitalWrite(RIGHTFRONT, HIGH);
-      digitalWrite(RIGHTREAR, HIGH);
-      delay(300);
-
-      digitalWrite(RIGHTREAR, LOW);
-      digitalWrite(RIGHTFRONT, LOW);
-      StopMotors();
-      digitalWrite(LEFTREAR, HIGH);
-      digitalWrite(RIGHTREAR, HIGH);
-
-      delay(100);
-
-      Forward(speed);
-      delay(450);
-      StopMotors();
-      digitalWrite(RIGHTREAR, LOW);
-      digitalWrite(RIGHTFRONT, LOW);
-      StopMotors();
-      digitalWrite(LEFTREAR, HIGH);
-      digitalWrite(RIGHTREAR, HIGH);
-
-=======
       Halt(speed);
       delay(500);
       Turn(speed, 100);
->>>>>>> main
       delay(100);
       Accelerate(speed);
       delay(320);
@@ -302,77 +229,6 @@ void loop() {
       // delay(340);
 
       // Halt(speed);
-
-      /*Old Code in case*/
-
-      // Forward(speed);
-      // delay(500);//
-      // StopMotors();
-      
-      // delay(100);
-
-      // Right(speed);
-      // digitalWrite(RIGHTREAR, HIGH);
-      // digitalWrite(RIGHTFRONT, HIGH);
-      // delay(160);// delay was 160 super charged, delay was 180 when charged, 200 when dead ish
-      // digitalWrite(RIGHTREAR, LOW);
-      // digitalWrite(RIGHTFRONT, LOW);
-      // StopMotors();
-      // digitalWrite(LEFTREAR, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-
-      // delay(100);//new 0
-      // digitalWrite(LEFTREAR, LOW);
-      // digitalWrite(RIGHTREAR, LOW);
-
-      // Forward(speed);
-      // delay(500);// 400 dead, 600 alive
-      // StopMotors();
-
-      // delay(100);//new 2 and below
-
-      // Right(speed);
-      // digitalWrite(RIGHTREAR, HIGH);
-      // digitalWrite(RIGHTFRONT, HIGH);
-      // delay(240);//was 240
-      // StopMotors();
-
-      // delay(100);//new 3
-
-      // Forward(speed);
-      // delay(600);//300 dead, 400 alive was 500
-      // StopMotors();
-      // digitalWrite(RIGHTREAR, LOW);
-      // digitalWrite(RIGHTFRONT, LOW);
-      // StopMotors();
-      // digitalWrite(LEFTREAR, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-
-      // delay(100);//new 4 and below
-
-      // Right(speed);
-      // digitalWrite(RIGHTFRONT, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-      // delay(180);
-      // StopMotors();
-      // digitalWrite(RIGHTREAR, LOW);
-      // digitalWrite(RIGHTFRONT, LOW);
-      // StopMotors();
-      // digitalWrite(LEFTREAR, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-
-      // delay(100);
-
-      // Forward(speed);
-      // delay(500);
-      // StopMotors();
-      // digitalWrite(RIGHTREAR, LOW);
-      // digitalWrite(RIGHTFRONT, LOW);
-      // StopMotors();
-      // digitalWrite(LEFTREAR, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-
-      // delay(100);
     }
   }
 }
