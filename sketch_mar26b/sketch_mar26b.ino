@@ -296,7 +296,7 @@ void loop() {
       Turn(speed, 85);
       delay(105);
       Accelerate(speed);
-      delay(290); //ms
+      delay(290); //ms //was 300
 
       Halt(speed); //Second turn
       delay(500);
@@ -310,7 +310,7 @@ void loop() {
       Turn(speed, 90);
       delay(105);
       Accelerate(speed);      
-      delay(280);
+      delay(270); //ms //was 280
 
       Halt(speed); //Stops at beginning point (hopefully.)
       StopMotors();
