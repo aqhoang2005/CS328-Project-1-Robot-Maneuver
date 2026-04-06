@@ -25,8 +25,6 @@
 #define YELLOW 0xFFFF00
 #define WHITE 0xFFFFF
 
-#define MotorPWM_A 4 //left motor
-#define MotorPWM_B 5 //right motor
 #define BLUETOOTH_BAUD_RATE 38400
 
 // Motor pins
@@ -107,19 +105,6 @@ void RIGHTLights(){
 void LEFTLights(){
   digitalWrite(LEFTREAR, HIGH);
   digitalWrite(LEFTFRONT, HIGH);
-}
-
-// Method: writetext
-// Input: x position
-// Print Lab Text across the screen
-void writetext(int x) { 
-  String text = "Lab 4 by: Emma Raymond Austin Hoang";
-
-  display.setTextSize(2);
-  display.setTextColor(SSD1306_WHITE);
-  display.setTextWrap(false); //Ensures the text does not wrap around to the second line of the OLCD display.
-  display.setCursor(x, 0);
-  display.print(text);
 }
 
 // ============================
@@ -257,8 +242,6 @@ void setup() {
   StopMotors();
   delay(1000);
 
-  Serial.begin(9600);
-  Serial2.begin(BLUETOOTH_BAUD_RATE);
   display.clearDisplay();
   display.display();
 }
