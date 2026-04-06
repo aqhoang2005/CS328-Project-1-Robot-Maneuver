@@ -15,16 +15,6 @@
 #define LOGO_WIDTH 8 // OLED display width, in pixels
 #define LOGO_HEIGHT 8 // OLED display height, in pixels
 
-//Color definitions
-#define BLACK 0x000000
-#define BLUE 0x0000FF
-#define RED 0xFF0000
-#define GREEN 0x00FF00
-#define CYAN 0x00FFFF
-#define MAGENTA 0xFF00FF
-#define YELLOW 0xFFFF00
-#define WHITE 0xFFFFF
-
 #define BLUETOOTH_BAUD_RATE 38400
 
 // Motor pins
@@ -44,8 +34,6 @@
 // Encoder pins
 #define ENCODER_LEFT  2
 #define ENCODER_RIGHT 3
-
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET); //init display
 
 // ============================
 // Encoder counters
@@ -78,31 +66,31 @@ void ISRMotorRight() {
 // ============================
 // Light control
 // ============================
-void OFFLights(){
+void OFFLights(){ //all lights turn off
   digitalWrite(LEFTREAR, LOW);
   digitalWrite(RIGHTREAR, LOW);
   digitalWrite(LEFTFRONT, LOW);
   digitalWrite(RIGHTFRONT, LOW);  
 }
 
-void ONLights(){
+void ONLights(){ //all lights turn on 
   digitalWrite(LEFTREAR, HIGH);
   digitalWrite(RIGHTREAR, HIGH);
   digitalWrite(LEFTFRONT, HIGH);
   digitalWrite(RIGHTFRONT, HIGH);
 }
 
-void BREAKLights(){
+void BREAKLights(){ //rear lights are on
   digitalWrite(LEFTREAR, HIGH);
   digitalWrite(RIGHTREAR, HIGH);
 }
 
-void RIGHTLights(){
+void RIGHTLights(){ //right side lights are on
   digitalWrite(RIGHTREAR, HIGH);
   digitalWrite(RIGHTFRONT, HIGH);
 }
 
-void LEFTLights(){
+void LEFTLights(){ //left side lights are on
   digitalWrite(LEFTREAR, HIGH);
   digitalWrite(LEFTFRONT, HIGH);
 }
@@ -136,7 +124,7 @@ void Backward(int speed) {
   digitalWrite(INA2B, HIGH);
 }
 
-void Left(int speed) 
+void Left(int speed) //left turn function
 {
   OFFLights();
   LEFTLights();
@@ -152,7 +140,7 @@ void Left(int speed)
   digitalWrite(INA2B, LOW);
 }
 
-void Right(int speed)
+void Right(int speed) //right turn function
 {
   OFFLights();
   RIGHTLights();
@@ -254,22 +242,22 @@ void loop() {
     if (Serial2.available()) {
     char cmd = Serial2.read();
 
-    if (cmd == 'F') {
+    if (cmd == 'F') { //forward
       Forward(128);
     }
-    else if (cmd == 'B') {
+    else if (cmd == 'B') { //backward
       Backward(128);
     }
-    else if (cmd == 'S') {
+    else if (cmd == 'S') { //stop
       StopMotors();
     }
-    else if (cmd == 'L') {
+    else if (cmd == 'L') { //left turn
       Left(100);
     }
-    else if (cmd == 'R') {
+    else if (cmd == 'R') { //right turn
       Right(100);
     }
-    else if (cmd == 'Q'){ //these were all calibrated using a dead ish battery
+    else if (cmd == 'Q'){ //square run code
       int speed = 200;
       Forward(speed);
       delay(360);
@@ -279,7 +267,7 @@ void loop() {
       Turn(speed, 85);
       delay(105);
       Accelerate(speed);
-      delay(290); //ms //was 300
+      delay(290); 
 
       Halt(speed); //Second turn
       delay(500);
@@ -293,9 +281,9 @@ void loop() {
       Turn(speed, 90);
       delay(105);
       Accelerate(speed);      
-      delay(270); //ms //was 280
+      delay(270);
 
-      Halt(speed); //Stops at beginning point (hopefully.)
+      Halt(speed);
       StopMotors();
     }
   }
