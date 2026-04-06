@@ -184,8 +184,6 @@ void Right(int speed)
 }
 
 void StopMotors() {
-  OFFLights();
-  ONLights();
   analogWrite(MotorPWM_L, 0);
   analogWrite(MotorPWM_R, 0);
 
@@ -202,7 +200,7 @@ void Halt(int startSpeed)
     Forward(s);
     delay(20);
   }
-    StopMotors();
+  StopMotors();
   
 }
 
@@ -218,6 +216,7 @@ void Turn(int maxSpeed, int turnTime)
 
 void Accelerate(int maxSpeed)
 {
+  OFFLights();
   for (int s = 80; s <= maxSpeed; s += 20) {
     Forward(s);
     delay(20);
@@ -297,95 +296,24 @@ void loop() {
       Turn(speed, 85);
       delay(105);
       Accelerate(speed);
-      delay(300); //ms
+      delay(290); //ms
 
       Halt(speed); //Second turn
       delay(500);
-      Turn(speed, 85);
+      Turn(speed, 95);
       delay(105);
       Accelerate(speed);      
       delay(280);
 
       Halt(speed); //Third turn
       delay(500);
-      Turn(speed, 85);
+      Turn(speed, 90);
       delay(105);
       Accelerate(speed);      
       delay(280);
 
       Halt(speed); //Stops at beginning point (hopefully.)
       StopMotors();
-
-      /*Old Code in case*/
-
-      // Forward(speed);
-      // delay(500);//
-      // StopMotors();
-      
-      // delay(100);
-
-      // Right(speed);
-      // digitalWrite(RIGHTREAR, HIGH);
-      // digitalWrite(RIGHTFRONT, HIGH);
-      // delay(160);// delay was 160 super charged, delay was 180 when charged, 200 when dead ish
-      // digitalWrite(RIGHTREAR, LOW);
-      // digitalWrite(RIGHTFRONT, LOW);
-      // StopMotors();
-      // digitalWrite(LEFTREAR, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-
-      // delay(100);//new 0
-      // digitalWrite(LEFTREAR, LOW);
-      // digitalWrite(RIGHTREAR, LOW);
-
-      // Forward(speed);
-      // delay(500);// 400 dead, 600 alive
-      // StopMotors();
-
-      // delay(100);//new 2 and below
-
-      // Right(speed);
-      // digitalWrite(RIGHTREAR, HIGH);
-      // digitalWrite(RIGHTFRONT, HIGH);
-      // delay(240);//was 240
-      // StopMotors();
-
-      // delay(100);//new 3
-
-      // Forward(speed);
-      // delay(600);//300 dead, 400 alive was 500
-      // StopMotors();
-      // digitalWrite(RIGHTREAR, LOW);
-      // digitalWrite(RIGHTFRONT, LOW);
-      // StopMotors();
-      // digitalWrite(LEFTREAR, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-
-      // delay(100);//new 4 and below
-
-      // Right(speed);
-      // digitalWrite(RIGHTFRONT, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-      // delay(180);
-      // StopMotors();
-      // digitalWrite(RIGHTREAR, LOW);
-      // digitalWrite(RIGHTFRONT, LOW);
-      // StopMotors();
-      // digitalWrite(LEFTREAR, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-
-      // delay(100);
-
-      // Forward(speed);
-      // delay(500);
-      // StopMotors();
-      // digitalWrite(RIGHTREAR, LOW);
-      // digitalWrite(RIGHTFRONT, LOW);
-      // StopMotors();
-      // digitalWrite(LEFTREAR, HIGH);
-      // digitalWrite(RIGHTREAR, HIGH);
-
-      // delay(100);
     }
   }
 }
