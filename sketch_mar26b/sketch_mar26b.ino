@@ -109,6 +109,19 @@ void LEFTLights(){
   digitalWrite(LEFTFRONT, HIGH);
 }
 
+// Method: writetext
+// Input: x position
+// Print Lab Text across the screen
+void writetext(int x) { 
+  String text = "Lab 4 by: Emma Raymond Austin Hoang";
+
+  display.setTextSize(2);
+  display.setTextColor(SSD1306_WHITE);
+  display.setTextWrap(false); //Ensures the text does not wrap around to the second line of the OLCD display.
+  display.setCursor(x, 0);
+  display.print(text);
+}
+
 // ============================
 // Motor control
 // ============================
@@ -245,6 +258,8 @@ void setup() {
   StopMotors();
   delay(1000);
 
+  Serial.begin(9600);
+  Serial2.begin(BLUETOOTH_BAUD_RATE);
   display.clearDisplay();
   display.display();
 }
