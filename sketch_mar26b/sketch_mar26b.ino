@@ -217,6 +217,9 @@ void setup() {
   Serial2.println("PWM,RPM_Left,RPM_Right");
 }
 
+// ============================
+// Loop
+// ============================
 void loop() {
   // put your main code here, to run repeatedly:
     if (Serial2.available()) {
